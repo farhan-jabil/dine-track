@@ -1,11 +1,8 @@
 const express = require("express");
 const app = express();
 const port = 5000;
-const mongoose = require('mongoose')
-const cors = require('cors')
-
-
-app.use(cors())
+const mongoose = require('mongoose');
+const foodRoutes = require('./routes/foodRoutes');
 
 const connectDB = async () =>  {
   try {
@@ -15,7 +12,12 @@ const connectDB = async () =>  {
     console.log("Error connecting to Database: ", error);
   }
 };
+
 connectDB();
+
+app.use(express.json());
+
+app.use('/food', foodRoutes); 
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
