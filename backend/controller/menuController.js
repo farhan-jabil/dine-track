@@ -1,12 +1,12 @@
-const Food = require("../model/foodModel");
+const Menu = require("../model/menuModel");
 
 exports.add = async (req, res, next) => {
   try {
     const data = req.body;
-    let food = new Food(data);
-    await food.save();
+    let menu = new Menu(data);
+    await menu.save();
     res.status(200).json({
-      message: "Food added successfully",
+      message: "Menu added successfully",
     });
   } catch (error) {
     if (!error.statusCode) {
