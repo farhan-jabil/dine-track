@@ -5,6 +5,7 @@ const menuSchema = new Schema({
     foodSku: {
         type: String,
         required: true,
+        unique: true,
     },
     foodName: {
         type: String,
@@ -23,23 +24,23 @@ const menuSchema = new Schema({
         required: true,
     },
     foodIngredients: {
-        type: String,
+        type: [String],
         required: false,
     },
     foodAllergens: {
-        type: String,
+        type: [String],
         required: false,
     },
     foodSize: {
-        type: String,
+        type: [String],
         required: true,
     },
     foodImage: {
         type: String,
         required: true,
     },
-    foodQuantity: {
-        type: Number,
+    foodAvailablity: {
+        type: Boolean,
         required: true
     }
 })
