@@ -3,6 +3,7 @@ const app = express();
 const port = 5000;
 const mongoose = require('mongoose');
 const menuRoutes = require('./routes/menuRoutes');
+const staffRoutes = require('./routes/staffRoutes');
 
 const connectDB = async () =>  {
   try {
@@ -18,6 +19,7 @@ connectDB();
 app.use(express.json());
 
 app.use('/menu', menuRoutes); 
+app.use('/staff', staffRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

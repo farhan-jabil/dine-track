@@ -1,12 +1,12 @@
-const Menu = require("../model/menuModel");
+const Staff = require("../model/staffModel");
 
 exports.add = async (req, res, next) => {
   try {
     const data = req.body;
-    let menu = new Menu(data);
-    await menu.save();
+    let staff = new Staff(data);
+    await staff.save();
     res.status(200).json({
-      message: "Menu added successfully",
+      message: "Staff Added",
     });
   } catch (error) {
     if (!error.statusCode) {
@@ -17,12 +17,12 @@ exports.add = async (req, res, next) => {
   }
 };
 
-exports.getBySku = async (req, res, next) => {
+exports.getById = async (req, res, next) => {
   try {
-    const data = await Menu.findOne({ foodSku: req.params.foodSku });
+    const data = await Staff.findOne({ staffUserId: req.params.staffId });
     res.status(200).json({
-      message: "Item retrived",
-      menu: data,
+      message: "Staff Retrived",
+      staff: data,
     });
   } catch (error) {
     if (!error.statusCode) {
@@ -35,11 +35,11 @@ exports.getBySku = async (req, res, next) => {
 
 exports.get = async (req, res, next) => {
   try {
-    const data = await Menu.find();
+    const data = await Staff.find();
     res.status(200).json({
-      message: "All Menu Retrieved",
-      totalMenu: data.length,
-      menu: data,
+      message: "All Staff Retrieved",
+      totalStuff: data.length,
+      staff: data,
     });
   } catch (error) {
     if (!error.statusCode) {
@@ -53,10 +53,10 @@ exports.get = async (req, res, next) => {
 exports.edit = async (req, res, next) => {
   try {
     const data = req.body;
-    await Menu.updateOne({ foodSku: req.params.foodSku }, { $set: data });
+    await Staff.updateOne({ staffUserId: req.params.staffId }, { $set: data });
     res.status(200).json({
-      message: "Item Edit Complete",
-      menu: data,
+      message: "Staff Edit Complete",
+      staff: data,
     });
   } catch (error) {
     if (!error.statusCode) {
@@ -69,9 +69,9 @@ exports.edit = async (req, res, next) => {
 
 exports.delete = async (req, res, next) => {
   try {
-    await Menu.findOneAndDelete({ foodSku: req.params.foodSku })
+    await Staff.findOneAndDelete({ staffUserId: req.params.staffId });
     res.status(200).json({
-      message: "Item Deleted"
+        message: "Staff Deleted",
     })
   } catch (error) {
     if (!error.statusCode) {
